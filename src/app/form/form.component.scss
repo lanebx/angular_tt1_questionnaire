@@ -1,0 +1,31 @@
+form {
+  max-width:420px;
+  margin: 50px auto;
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+.input {
+  background-color: transparent;
+  color:black;
+  font-weight:500;
+  font-size: 18px;
+  border-radius: 5px;
+  line-height: 22px;
+  border: 2px solid rgb(70, 70, 104);
+  padding: 13px;
+  margin-bottom: 15px;
+  width:100%;
+  outline: none;
+}
+
+.button {
+  font-weight: 500;
+  font-size: 18px;
+  border-radius: 5px;
+  padding: 13px;
+  margin-bottom: 15px;
+  width: 100%;
+  background:rgb(70, 70, 104); 
+  border: none;
+  cursor: pointer;
+}

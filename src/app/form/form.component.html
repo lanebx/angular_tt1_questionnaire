@@ -1,0 +1,33 @@
+<form [formGroup]="developerForm" (ngSubmit)="onSubmit()">
+
+  <label>
+    <input formControlName="firstName" class="input" placeholder="FirstName:">
+  </label>
+  
+  <label>
+    <input formControlName="lastName" class="input" placeholder="LastName:">
+  </label>
+
+  <select formControlName="preferFramework" (change)="selectedFramework($event)">
+    <option *ngFor="let framework of frameworks" [value]="framework.name">
+      {{ framework.name }}
+    </option>
+  </select>
+
+  <div formArrayName="hobby" *ngFor="let hobs of hobby.controls; let i=index" class="grouping">
+    <label>
+      <input [formControlName]="i" type="text" placeholder="hobby">
+    <button type="button" id="remove" (click)="removeHobby(i)">
+      X
+    </button>
+    </label>
+  </div>
+  <button type="button" (click)="addHobby()">
+    Add hobby
+  </button>
+
+  <button class="button" type="submit">
+    Submit
+  </button>
+</form>
+

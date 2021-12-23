@@ -25,7 +25,7 @@
 
 конечная модель которая будет отправлятся на сервер должна выглядеть так:
      {
-          firstName: 'Petro',
+          <input formControlName="nameControl">: 'Petro',
           lastName: 'Pupkin',
           dateOfBirth: '23-11-1990',
           framework: 'angular',
