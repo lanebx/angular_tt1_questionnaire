@@ -4,11 +4,15 @@
   </h1>
 
   <label>
-    <input formControlName="firstName" class="form__input-name input" placeholder="FirstName:">
+    <input formControlName="firstName" class="form__input input" placeholder="FirstName:">
   </label>
   
   <label>
-    <input formControlName="lastName" class="form__input-name input" placeholder="LastName:">
+    <input formControlName="lastName" class="form__input input" placeholder="LastName:">
+  </label>
+
+  <label>
+    <input formControlName="email" class="form__input input" placeholder="Email:">
   </label>
 
   <div class="form__label">
@@ -32,6 +36,9 @@
   </select>
 
   <div class="form__group-container">
+    <div class="warning">
+      {{ addHobiesDisablet }}
+    </div>
     <div formArrayName="hobby" *ngFor="let hobs of hobby.controls; let i=index" class="form__group">
       <div class="form__hobby-group">
         <input [formControlName]="i" type="text" placeholder="Your hobby:" class="form__input-hobby input">

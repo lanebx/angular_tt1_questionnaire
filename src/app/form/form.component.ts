@@ -11,6 +11,7 @@ export class FormComponent implements OnInit {
   developerForm!: FormGroup;
   preferVersion: any;
   preferVersionDisablet: string = '';
+  addHobiesDisablet: string = '';
   frameworks: any = [
     {name:'angular', version: ['1.1.1', '1.2.1', '1.3.3']},
     {name:'react', version: ['2.1.2', '3.2.4', '4.3.1']},
@@ -27,14 +28,18 @@ export class FormComponent implements OnInit {
     this.developerForm = this.fb.group({
       firstName : new FormControl('', Validators.required),
       lastName : new FormControl('', Validators.required),
-      preferFramework: new FormControl({value: ''}, Validators.required),
-      preferVersion: new FormControl({value: ''}, Validators.required),
-      hobby: this.fb.array([this.fb.control('')], Validators.required)
+      email : new FormControl('', [Validators.email]),
+      preferFramework: new FormControl('', Validators.required),
+      preferVersion: new FormControl('', Validators.required),
+      hobby: this.fb.array([this.fb.control('', Validators.required)])
     })
   }
 
   onSubmit(): void {
     console.log(this.developerForm);
+
+    console.log(Boolean(this.hobby.value));
+    
   }
 
   selectedFramework(event: any): void {
@@ -49,7 +54,12 @@ export class FormComponent implements OnInit {
   }
 
   addHobby(): void {
-    this.hobby.push(this.fb.control(''));
+    if (this.hobby.value.every((item: any) => item.length >= 1)) {
+      this.addHobiesDisablet = ''
+      this.hobby.push(this.fb.control(''));
+    } else {
+      this.addHobiesDisablet = 'empty field';
+    }
   }
 
   removeHobby(index: number) : void {
