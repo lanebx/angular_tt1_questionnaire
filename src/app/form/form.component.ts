@@ -1,6 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder, FormArray } from '@angular/forms';
 
+
+interface Framework {
+  name: string, 
+  version: string[],
+};
+
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
@@ -9,20 +15,24 @@ import { FormGroup, FormControl, Validators, FormBuilder, FormArray } from '@ang
 
 export class FormComponent implements OnInit {
   developerForm!: FormGroup;
-  preferVersion: any;
+  preferVersion?: string[];
   preferVersionDisablet!: string;
   addHobiesDisablet!: string;
+  emailMessage = '';
 
-  frameworks: any = [
+  frameworks: Framework[] = [
     {name:'angular', version: ['1.1.1', '1.2.1', '1.3.3']},
     {name:'react', version: ['2.1.2', '3.2.4', '4.3.1']},
     {name:'vue', version: ['3.3.1', '5.2.1', '5.1.3']},
   ];
 
+  emailFromServer: string[] = ['test2@test.test']
+
   constructor(private fb: FormBuilder){}
 
   ngOnInit(): void {
     this.initializeForm();
+
   }
 
   initializeForm() : void {
@@ -53,8 +63,19 @@ export class FormComponent implements OnInit {
 
     this.preferVersionDisablet = "Select version:";
 
-    this.preferVersion = this.frameworks
-      .find((framework: any) => framework.name === event.target.value).version;
+    this.preferVersion = this.frameworks.find((framework: Framework) => framework.name === event.target.value)?.version;
+  }
+
+  checkEmail(event: any) : void {
+    this.emailMessage = 'Loaging...';
+
+    setTimeout(() => {
+      if (this.emailFromServer.includes(event.target.value)) {
+        this.emailMessage = 'This email is registered please choose another';
+      } else {
+        this.emailMessage = '';
+      }
+    },2000);
   }
 
   addHobby(): void {

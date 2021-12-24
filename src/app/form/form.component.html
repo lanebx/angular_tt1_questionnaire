@@ -5,8 +5,12 @@
 
   <input formControlName="firstName" class="form__input input" placeholder="FirstName:">
   <input formControlName="lastName" class="form__input input" placeholder="LastName:">
-  <input formControlName="dateOfBirth" type="date" class="form__input input">
-  <input formControlName="email" class="form__input input" placeholder="Email:">
+  <input formControlName="dateOfBirth" type="text" class="form__input input" onfocus="(this.type='date')" onblur="(this.type='text')" placeholder="Birthday:">
+  
+  <input formControlName="email" class="form__input input" placeholder="Email:" (blur)="checkEmail($event)">
+  <div class="warning">
+    {{ emailMessage }}
+  </div>
 
   <div class="form__label">
     Select framework:
