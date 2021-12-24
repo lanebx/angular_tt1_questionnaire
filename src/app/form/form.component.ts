@@ -60,6 +60,8 @@ export class FormComponent implements OnInit {
     } else {
       this.addHobiesDisablet = 'empty field';
     }
+
+    console.log(this.hobby.value);
   }
 
   removeHobby(index: number) : void {
