@@ -59,6 +59,10 @@ $color: rgb(70, 70, 104);
   &-remove {
     width: 50px;
   }
+
+  &:hover {
+    box-shadow: 0 5px 5px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+  }
 }
 
 .input {
@@ -76,4 +80,11 @@ $color: rgb(70, 70, 104);
 
 .warning {
   color: red;
+}
+
+.button[disabled=true] {
+
+  &:hover {
+
+  }
 }
