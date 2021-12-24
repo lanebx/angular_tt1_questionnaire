@@ -1,32 +1,52 @@
-<form [formGroup]="developerForm" (ngSubmit)="onSubmit()">
+<form [formGroup]="developerForm" (ngSubmit)="onSubmit()" class="form">
+  <h1 class="form__main-label">
+    Questionnaire:
+  </h1>
 
   <label>
-    <input formControlName="firstName" class="input" placeholder="FirstName:">
+    <input formControlName="firstName" class="form__input-name input" placeholder="FirstName:">
   </label>
   
   <label>
-    <input formControlName="lastName" class="input" placeholder="LastName:">
+    <input formControlName="lastName" class="form__input-name input" placeholder="LastName:">
   </label>
 
-  <select formControlName="preferFramework" (change)="selectedFramework($event)">
+  <div class="form__label">
+    Select framework:
+  </div>
+
+  <select formControlName="preferFramework" (change)="selectedFramework($event)" class="form__select">
     <option *ngFor="let framework of frameworks" [value]="framework.name">
       {{ framework.name }}
     </option>
   </select>
 
-  <div formArrayName="hobby" *ngFor="let hobs of hobby.controls; let i=index" class="grouping">
-    <label>
-      <input [formControlName]="i" type="text" placeholder="hobby">
-    <button type="button" id="remove" (click)="removeHobby(i)">
-      X
-    </button>
-    </label>
+  <div class="form__label">
+    {{preferVersionDisablet}}
   </div>
-  <button type="button" (click)="addHobby()">
-    Add hobby
-  </button>
 
-  <button class="button" type="submit">
+  <select formControlName="preferVersion" class="form__select">
+    <option *ngFor="let version of preferVersion" [value]="version">
+      {{ version }}
+    </option>
+  </select>
+
+  <div class="form__group-container">
+    <div formArrayName="hobby" *ngFor="let hobs of hobby.controls; let i=index" class="form__group">
+      <div class="form__hobby-group">
+        <input [formControlName]="i" type="text" placeholder="Your hobby:" class="form__input-hobby input">
+        <button type="button" id="remove" (click)="removeHobby(i)" class="button button-remove">
+          X
+        </button>
+      </div>
+    </div>
+
+    <button type="button" (click)="addHobby()" class="button button-add">
+      Add hobby
+    </button>
+  </div>
+
+  <button class="button" type="submit" [disabled]="!developerForm.valid">
     Submit
   </button>
 </form>

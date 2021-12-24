@@ -1,21 +1,48 @@
-form {
+$color: rgb(70, 70, 104); 
+
+.form {
   max-width:420px;
   margin: 50px auto;
   font-family: Helvetica, Arial, sans-serif;
-}
 
-.input {
-  background-color: transparent;
-  color:black;
-  font-weight:500;
-  font-size: 18px;
-  border-radius: 5px;
-  line-height: 22px;
-  border: 2px solid rgb(70, 70, 104);
-  padding: 13px;
-  margin-bottom: 15px;
-  width:100%;
-  outline: none;
+  &__main-label {
+    color: $color;
+    text-align: center;
+  }
+
+  &__select {
+    color: $color;
+    -webkit-appearance: none;
+    padding: 7px 40px 7px 12px;
+    width: 100%;
+    border: 1px solid #E8EAED;
+    border-radius: 5px;
+    background: white;
+    box-shadow: 0 1px 3px -2px ;
+    margin-bottom: 5px;
+  }
+
+  &__input-hobby {
+    width: 40%;
+  }
+
+  &__input-name {
+    width: 100%;
+  }
+
+  &__label {
+    height: 25px;
+    line-height: 26px;
+    color: $color;
+  }
+
+  &__group-container {
+    margin-top: 20px;
+  }
+
+  &__hobby-group {
+    display: flex;
+  }
 }
 
 .button {
@@ -25,7 +52,25 @@ form {
   padding: 13px;
   margin-bottom: 15px;
   width: 100%;
-  background:rgb(70, 70, 104); 
+  background: $color;
   border: none;
   cursor: pointer;
+
+  &-remove {
+    width: 50px;
+  }
 }
+
+.input {
+  background-color: transparent;
+  color:rgb(70, 70, 104); 
+  font-weight:500;
+  font-size: 18px;
+  border-radius: 5px;
+  line-height: 22px;
+  border: 2px solid $color;
+  padding: 13px;
+  margin-bottom: 15px;
+  outline: none;
+}
+

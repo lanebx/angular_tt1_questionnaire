@@ -6,8 +6,11 @@ import { FormGroup, FormControl, Validators, FormBuilder, FormArray } from '@ang
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.scss']
 })
+
 export class FormComponent implements OnInit {
   developerForm!: FormGroup;
+  preferVersion: any;
+  preferVersionDisablet: string = '';
   frameworks: any = [
     {name:'angular', version: ['1.1.1', '1.2.1', '1.3.3']},
     {name:'react', version: ['2.1.2', '3.2.4', '4.3.1']},
@@ -17,17 +20,16 @@ export class FormComponent implements OnInit {
   constructor(private fb: FormBuilder){}
 
   ngOnInit(): void {
-    console.log(this.developerForm);
     this.initializeForm();
   }
 
   initializeForm() : void {
     this.developerForm = this.fb.group({
-      firstName : '',
-      lastName : '',
-      preferFramework: '',
-      
-      hobby: this.fb.array([this.fb.control('')])
+      firstName : new FormControl('', Validators.required),
+      lastName : new FormControl('', Validators.required),
+      preferFramework: new FormControl({value: ''}, Validators.required),
+      preferVersion: new FormControl({value: ''}, Validators.required),
+      hobby: this.fb.array([this.fb.control('')], Validators.required)
     })
   }
 
@@ -39,6 +41,11 @@ export class FormComponent implements OnInit {
     this.developerForm.patchValue({
       preferFramework: event.target.value
     })
+
+    this.preferVersionDisablet = "Select version:";
+
+    this.preferVersion = this.frameworks
+      .find((framework: any) => framework.name === event.target.value).version;
   }
 
   addHobby(): void {
@@ -53,8 +60,3 @@ export class FormComponent implements OnInit {
     return this.developerForm.get('hobby') as FormArray;
   }
 }
-
-// this.developerForm = new FormGroup({
-//   firstName : new FormControl(null, Validators.required),
-//   lastName : new FormControl(null, Validators.required),
-// })
