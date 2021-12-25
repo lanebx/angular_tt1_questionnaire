@@ -32,7 +32,6 @@ export class FormComponent implements OnInit {
 
   ngOnInit(): void {
     this.initializeForm();
-
   }
 
   initializeForm() : void {
@@ -85,25 +84,13 @@ export class FormComponent implements OnInit {
     } else {
       this.addHobiesDisablet = 'empty field';
     }
-
-    console.log(this.hobby.value);
   }
 
   removeHobby(index: number) : void {
     this.hobby.removeAt(index);
-
-    console.log(this.hobby.value);
   }
 
   get hobby(): FormArray {
     return this.developerForm.get('hobby') as FormArray;
   }
 }
-
-
-// hobby: this.fb.array([this.fb.group({
-//   name: new FormControl('', Validators.required),
-//   duration: new FormControl('', Validators.required),
-// })])
-
-// hobby: this.fb.array([this.fb.control('', Validators.required)])

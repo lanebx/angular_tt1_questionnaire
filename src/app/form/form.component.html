@@ -53,5 +53,9 @@
   <button class="button" type="submit" [disabled]="!developerForm.valid">
     Submit
   </button>
+
+  <div [hidden]="developerForm.valid">
+    * The form must be filled out correctly
+  </div>
 </form>
 
